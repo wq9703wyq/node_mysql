@@ -9,23 +9,13 @@ npm install mysql -save
 配置
 -----
 ```javascript
-this.connection = () => {
-		let connection = mysql.createConnection({
-			host: 'localhost', // host配置
-			user: 'root', // 数据库用户名
-			password: '123456', // 数据库密码
-			database: 'node_js', // 数据库名称
-			port: 3306 // 端口
-		});
-
-		connection.connect((err) => {
-			if (err) {
-				console.log(err);
-				return;
-			}
-		});
-		return connection;
-	}
+confing(host, user, password, database, port)
+```
+>> 示例
+```javascript
+const mySql = require('/mysqldb') // 引用js文件
+let db = new mySql() // 实例化
+db.confing('localhost', 'root', '123456', 'node_js', '3306')
 ```
 使用
 ------
@@ -82,8 +72,23 @@ returnSql()
 ```javascript
 db.baseSql('search', 'user').returnSql()
 ```
-## 直接设置语句 （待补充）
-##### where查找
+##### 直接设置sql语句
+```javascript
+setsqlSentence(sqlSentence)
+```
+>> 示例
+```javascript
+db.setsqlSentence('SELECT * FROM user').sqlQuery(connection)
+// 查找user表中的所有记录
+```
+>> 参数
+
+|名称|类型|可选参数|备注|必要
+|---|---|---|---|---
+|sqlSentence|String|无|mysql语句|必要
+
+
+##### where查找 // 集合查找未测试不推荐使用
 ```javascript
 searchExtra(searchType, paras)
 ```
